@@ -14,6 +14,31 @@ version = '1.0'
 long_description = read('README.txt') + '\n' + read('HISTORY.txt')
 
 install_requires = [
+     "cromlech.browser",
+     "cromlech.configuration",
+     "cromlech.dawnlight",
+     "cromlech.i18n",
+     "cromlech.webob",
+     "cromlech.wsgistate",
+     "dolmen.forms.base",
+     "dolmen.forms.crud",
+     "dolmen.forms.table",
+     "dolmen.forms.viewlet",
+     "dolmen.forms.ztk",
+     "dolmen.layout",
+     "dolmen.location",
+     "dolmen.menu",
+     "dolmen.message",
+     "dolmen.template",
+     "dolmen.view",
+     "dolmen.viewlet",
+     "grokcore.component",
+     "setuptools",
+     "z3c.table",
+     "zope.component",
+     "zope.event",
+     "zope.interface",
+     "zope.lifecycleevent",
     ]
 
 tests_require = [
@@ -22,9 +47,9 @@ tests_require = [
 setup(
     name='ul.browser',
     version=version,
-    author='Grok & Dolmen Teams',
-    author_email='dolmen@list.dolmen-project.org',
-    url='http://gitweb.dolmen-project.org',
+    author='Novareto GmbH',
+    author_email='',
+    url='http://www.novareto.de',
     download_url='http://pypi.python.org/pypi/ul.browser',
     description='Browser components for uvclight',
     long_description=long_description,
@@ -37,7 +62,7 @@ setup(
         ],
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    namespace_packages=['dolmen'],
+    namespace_packages=['ul'],
     include_package_data=True,
     zip_safe=False,
     install_requires=install_requires,

@@ -3,7 +3,7 @@
 from os import path
 
 from .interfaces import ISubMenu, IContextualActionsMenu
-from .utils import make_json_response, url as compute_url
+from .utils import make_json_response, url as compute_url, get_template
 
 from cromlech.browser import ITemplate
 from cromlech.browser.exceptions import HTTPFound
@@ -180,9 +180,9 @@ class ViewletForm(ViewletForm):
         return template
 
 
-form_template = TALTemplate(path.join(path.dirname(__file__), 'form.cpt'))
+form_template = get_template('form.cpt', __file__)
 
-    
+
 @adapter(IForm, Interface)
 @implementer(ITemplate)
 def form_template(context, request):

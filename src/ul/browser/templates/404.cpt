@@ -1,0 +1,4 @@
+<div class="error404">
+  <h1 tal:content="context.title" />
+  <pre tal:content="view.traceback"></pre>
+</div>

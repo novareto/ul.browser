@@ -2,7 +2,9 @@
 
 import json
 import urllib
+from os import path
 from dolmen.location import get_absolute_url
+from dolmen.template import TALTemplate
 
 
 def make_json_response(view, result, name=None):
@@ -34,3 +36,7 @@ def url(request, obj, name=None, data=None):
                 or item for item in v]
 
     return url + '?' + urllib.urlencode(data, doseq=True)
+
+
+def get_template(filename, cwd):
+    return TALTemplate(path.join(path.dirname(cwd), 'templates', filename))
