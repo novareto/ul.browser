@@ -7,6 +7,7 @@ from .context import ContextualRequest
 from cromlech.dawnlight import DawnlightPublisher, ViewLookup
 from cromlech.dawnlight import view_locator, query_view
 from cromlech.dawnlight.lookup import ModelLookup
+from zope.component.hooks import setSite
 from zope.component.interfaces import IObjectEvent
 from zope.event import notify
 from zope.interface import Attribute, implementer
@@ -58,6 +59,21 @@ class UVCModelLookup(ModelLookup):
 
 located_view = ViewLookup(view_locator(query_view))
 base_model_lookup = UVCModelLookup()
+
+
+class Site(object):
+
+    def __init__(self, model, name):
+        self.model = model
+        self.name = name
+
+    def __enter__(self):
+        root = self.model(self.name)
+        setSite(root)
+        return root
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        setSite()
 
 
 class Publication(object):

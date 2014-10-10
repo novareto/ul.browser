@@ -20,6 +20,7 @@ install_requires = [
      "cromlech.i18n",
      "cromlech.webob",
      "cromlech.wsgistate",
+     "dawnlight",
      "dolmen.forms.base",
      "dolmen.forms.crud",
      "dolmen.forms.table",
@@ -37,8 +38,10 @@ install_requires = [
      "z3c.table",
      "zope.component",
      "zope.event",
+     "zope.i18n",
      "zope.interface",
      "zope.lifecycleevent",
+     "zope.location",
     ]
 
 tests_require = [

@@ -11,8 +11,6 @@ from cromlech.dawnlight import ITracebackAware
 from dawnlight import ResolveError
 from dolmen.view.components import query_view_layout
 from grokcore.component import name, context
-from grokcore.security import require
-from zope.dublincore.interfaces import IDCDescriptiveProperties
 from zope.interface import implementer
 from zope.location import locate, Location
 
@@ -31,7 +29,6 @@ def make_error_layout_response(view, result, name=None):
     return response
 
 
-@implementer(IDCDescriptiveProperties)
 class Error404(Location):
 
     def __init__(self, context):
@@ -51,7 +48,6 @@ class Error404(Location):
 class PageError404(Page):
     name('')
     context(ResolveError)
-    require('zope.Public')
     make_response = make_error_layout_response
 
     template = get_template('404.cpt', __file__)
@@ -64,7 +60,6 @@ class PageError404(Page):
         self.traceback = ''.join(traceback.format_exception(*exc_info))
 
 
-@implementer(IDCDescriptiveProperties)
 class Error500(Location):
 
     def __init__(self, context):
@@ -84,7 +79,6 @@ class Error500(Location):
 class PageError500(Page):
     name('')
     context(Exception)
-    require('zope.Public')
     make_response = make_error_layout_response
 
     template = get_template('500.cpt', __file__)

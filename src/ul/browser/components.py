@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from os import path
-
 from .interfaces import ISubMenu, IContextualActionsMenu
 from .utils import make_json_response, url as compute_url, get_template
 
@@ -21,7 +19,6 @@ from dolmen.forms.viewlet import ViewletForm
 from dolmen.forms.ztk.validation import InvariantsValidation
 from dolmen.layout import Layout as BaseLayout
 from dolmen.location import get_absolute_url
-from dolmen.template import TALTemplate
 from dolmen.menu import IMenu, Menu as BaseMenu, Entry as MenuItem
 from dolmen.menu import menu
 from dolmen.message import BASE_MESSAGE_TYPE
