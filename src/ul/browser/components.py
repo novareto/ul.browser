@@ -103,7 +103,7 @@ class Menu(BaseMenu):
         BaseMenu.update(self)
         submenus = getAdapters(
             (self.context, self.request, self.view, self), ISubMenu)
-        for name, submenu in submenus:
+        for id, submenu in submenus:
             submenu.update()
             self.submenus.append(submenu)
 
