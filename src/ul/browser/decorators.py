@@ -2,6 +2,16 @@
 
 from cromlech.configuration.utils import load_zcml
 from cromlech.i18n import register_allowed_languages
+from cromlech.wsgistate import WsgistateSession
+
+
+def sessionned(key):
+    def session_wrapped(wrapped):
+        def caller(environ, start_response):
+            with WsgistateSession(environ, key):
+                return wrapped(environ, start_response)
+        return caller
+    return session_wrapped
 
 
 def with_zcml(arg_name, method='pop'):
