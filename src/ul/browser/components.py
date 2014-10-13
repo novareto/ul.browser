@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from .interfaces import ISubMenu, IContextualActionsMenu
 from .utils import make_json_response, url as compute_url, get_template
 
 from cromlech.browser import ITemplate
 from cromlech.browser.exceptions import HTTPFound
 from cromlech.browser.exceptions import REDIRECTIONS
 from cromlech.webob.response import Response
-
-from dolmen.viewlet import slot as viewletmanager
 from dolmen.forms import crud
 from dolmen.forms.base import Form as BaseForm
 from dolmen.forms.base import action
@@ -24,9 +21,10 @@ from dolmen.menu import menu
 from dolmen.message import BASE_MESSAGE_TYPE
 from dolmen.message.utils import send
 from dolmen.view import View as BaseView, make_layout_response
-
+from dolmen.viewlet import slot as viewletmanager
 from grokcore.component import adapter, implementer
 from grokcore.component import order, baseclass, name, title, context
+from uvc.design.canvas import ISubMenu, IContextualActionsMenu
 from z3c.table.column import LinkColumn, ModifiedColumn, CheckBoxColumn
 from z3c.table.table import Table as BaseTable
 from zope.component import getMultiAdapter, getAdapters
