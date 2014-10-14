@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .decorators import with_zcml, with_i18n
-from .session import sessionned
+from .decorators import with_zcml, with_i18n, sessionned
 from .context import ContextualRequest
 from .shell import make_shell
 
