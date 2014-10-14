@@ -3,6 +3,7 @@
 from .decorators import with_zcml, with_i18n
 from .session import sessionned
 from .context import ContextualRequest
+from .shell import make_shell
 
 from cromlech.dawnlight import DawnlightPublisher, ViewLookup
 from cromlech.dawnlight import view_locator, query_view
@@ -107,6 +108,9 @@ class Publication(object):
 
     def publish_traverse(self, request, site):
         return self.publish(request, site)
+
+    def __interact__(self, banner=u'', **namespace):
+        return make_shell(banner=banner, **namespace)
 
     def __call__(self, environ, start_response):
 
