@@ -42,7 +42,7 @@ install_requires = [
      "zope.interface",
      "zope.lifecycleevent",
      "zope.location",
-     "IPython",
+     "IPython >= 2.3",
     ]
 
 tests_require = [

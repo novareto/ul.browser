@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+marker = object()
+
+
 def eval_loader(expr):
     """load  a class / function
 
