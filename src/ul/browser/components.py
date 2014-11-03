@@ -180,7 +180,7 @@ form_template = get_template('form.cpt', __file__)
 
 @adapter(IForm, Interface)
 @implementer(ITemplate)
-def form_template(context, request):
+def adapter_form_template(context, request):
     """default template for a form
     """
     return form_template

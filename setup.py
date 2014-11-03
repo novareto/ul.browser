@@ -35,6 +35,7 @@ install_requires = [
      "dolmen.viewlet",
      "grokcore.component",
      "setuptools",
+     "uvc.design.canvas",
      "z3c.table",
      "zope.component",
      "zope.event",
