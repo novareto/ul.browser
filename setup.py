@@ -10,10 +10,11 @@ def read(*rnames):
             os.path.join(os.path.dirname(__file__), 'docs'),
             *rnames)).read()
 
-version = '1.0'
+version = '0.1'
 long_description = read('README.txt') + '\n' + read('HISTORY.txt')
 
 install_requires = [
+     "IPython >= 2.3",
      "cromlech.browser",
      "cromlech.configuration",
      "cromlech.dawnlight",
@@ -35,15 +36,11 @@ install_requires = [
      "dolmen.viewlet",
      "grokcore.component",
      "setuptools",
-     "uvc.design.canvas",
+     "uvc.entities",
      "z3c.table",
      "zope.component",
      "zope.event",
-     "zope.i18n",
-     "zope.interface",
-     "zope.lifecycleevent",
      "zope.location",
-     "IPython >= 2.3",
     ]
 
 tests_require = [

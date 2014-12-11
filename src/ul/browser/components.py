@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import zope.lifecycleevent
+
 from .utils import make_json_response, url as compute_url, get_template
 
 from cromlech.browser import ITemplate
@@ -24,13 +26,12 @@ from dolmen.view import View as BaseView, make_layout_response
 from dolmen.viewlet import slot as viewletmanager
 from grokcore.component import adapter, implementer
 from grokcore.component import order, baseclass, name, title, context
-from uvc.design.canvas import ISubMenu, IContextualActionsMenu
+from uvc.entities import ISubMenu, IContextualActionsMenu
 from z3c.table.column import LinkColumn, ModifiedColumn, CheckBoxColumn
 from z3c.table.table import Table as BaseTable
 from zope.component import getMultiAdapter, getAdapters
 from zope.event import notify
 from zope.interface import Interface
-import zope.lifecycleevent
 
 
 class View(BaseView):
