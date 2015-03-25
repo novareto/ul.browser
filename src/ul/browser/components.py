@@ -260,6 +260,7 @@ class DisplayMenuItem(MenuItem):
 class DeleteForm(crud.Delete, Form):
     title(u'Entfernen')
     baseclass()
+    actions = crud.Delete.actions
 
 
 class DeleteMenuItem(MenuItem):
