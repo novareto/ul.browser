@@ -94,6 +94,13 @@ class Menu(BaseMenu):
 
     submenus = None
 
+    def namespace(self):
+        ns = BaseMenu.namespace(self)
+        ns['entries'] = self.entries
+        ns['renderables'] = getattr(self, 'renderableitems', None)
+        ns['submenus'] = self.submenus
+        return ns
+
     def update(self):
         self.submenus = list()
         BaseMenu.update(self)
