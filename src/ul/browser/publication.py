@@ -106,7 +106,8 @@ class Publication(object):
         raise NotImplementedError
 
     def publish_traverse(self, request, site):
-        return self.publish(request, site)
+        publisher = self.get_publisher()
+        return publisher(request, site)
 
     def __interact__(self, banner=u'', **namespace):
         return make_shell(banner=banner, **namespace)
