@@ -243,6 +243,10 @@ class EditMenuItem(MenuItem):
     name('edit')
     order(20)
 
+    @property
+    def available(self):
+        return getattr(self.context, 'isEditable', False)
+
 
 class DisplayForm(crud.Display, Form):
     title(u'Anzeigen')
@@ -268,7 +272,7 @@ class DeleteForm(crud.Delete, Form):
     title(u'Entfernen')
     baseclass()
     actions = crud.Delete.actions
-
+    
 
 class DeleteMenuItem(MenuItem):
     menu(IContextualActionsMenu)
@@ -276,6 +280,10 @@ class DeleteMenuItem(MenuItem):
     name('delete')
     order(30)
 
+    @property
+    def available(self):
+        return getattr(self.context, 'isDeletable', False)
+    
 
 class Table(BaseTable):
 
