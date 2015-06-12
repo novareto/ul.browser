@@ -26,7 +26,8 @@ from dolmen.view import View as BaseView, make_layout_response
 from dolmen.viewlet import slot as viewletmanager
 from grokcore.component import adapter, implementer
 from grokcore.component import order, baseclass, name, title, context
-from uvc.entities.browser import ISubMenu, IContextualActionsMenu
+from uvc.entities.browser import ISubMenu
+from uvc.entities.browser import IContextualActionsMenu, IDocumentActions
 from z3c.table.column import LinkColumn, ModifiedColumn, CheckBoxColumn
 from z3c.table.table import Table as BaseTable
 from zope.component import getMultiAdapter, getAdapters
@@ -238,7 +239,7 @@ class EditForm(crud.Edit, Form):
 
 
 class EditMenuItem(MenuItem):
-    menu(IContextualActionsMenu)
+    menu(IDocumentActions)
     title(u'Bearbeiten')
     name('edit')
     order(20)
@@ -275,7 +276,7 @@ class DeleteForm(crud.Delete, Form):
     
 
 class DeleteMenuItem(MenuItem):
-    menu(IContextualActionsMenu)
+    menu(IDocumentActions)
     title('Entfernen')
     name('delete')
     order(30)
