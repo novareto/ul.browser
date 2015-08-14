@@ -236,6 +236,7 @@ class AddForm(Form):
 class EditForm(crud.Edit, Form):
     title(u'Bearbeiten')
     baseclass()
+    title = u"Objekt löschen"
 
 
 class EditMenuItem(MenuItem):
@@ -273,7 +274,8 @@ class DeleteForm(crud.Delete, Form):
     title(u'Entfernen')
     baseclass()
     actions = crud.Delete.actions
-    
+    title = u"Objekt bearbeiten"
+
 
 class DeleteMenuItem(MenuItem):
     menu(IDocumentActions)
