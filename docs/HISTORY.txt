@@ -1,6 +1,15 @@
 Changes
 =======
 
+0.2 (2015-12-01)
+------------------
+
+  - Using now new attr for edit/delete availability
+  - Document actions now use the right menu
+  - Publisher is now called correctly in publish_traverse
+  - Added actions definitions on the Delete form
+  - Made zcml optional with the decorator
+
 
 0.1.1 (2014-12-11)
 ------------------
