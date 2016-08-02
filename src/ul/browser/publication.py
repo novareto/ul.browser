@@ -4,6 +4,7 @@ from .decorators import with_zcml, with_i18n, sessionned
 from .context import ContextualRequest
 from .shell import make_shell
 
+from collections import namedtuple
 from cromlech.dawnlight import DawnlightPublisher, ViewLookup
 from cromlech.dawnlight import view_locator, query_view
 from cromlech.dawnlight.lookup import ModelLookup
@@ -11,6 +12,7 @@ from zope.component.hooks import setSite
 from zope.component.interfaces import IObjectEvent
 from zope.event import notify
 from zope.interface import Attribute, implementer
+from zope.schema import getFieldsInOrder, getValidationErrors
 
 
 class IModelFoundEvent(IObjectEvent):
@@ -79,17 +81,25 @@ class Site(object):
 class Publication(object):
 
     layers = None
+    check_configuration = None  # None or list of Interface
 
     @classmethod
     @with_zcml('zcml_file')
     @with_i18n('langs', fallback='en')
-    def create(cls, gc, name, session_key):
-        return cls(name, session_key)
+    def create(cls, gc, **kwargs):
+        factory = namedtuple('Configuration', kwargs.keys())
+        configuration = factory(**kwargs)
+        if cls.check_configuration is not None:
+            errors = []
+            for iface in cls.check_configuration:
+                errors.extends(getValidationErrors(iface, configuration))
+            if errors:
+                raise RuntimeError('Errors occured: %s' % ', '.join(errors))
+        return cls(configuration)
 
-    def __init__(self, name, session_key):
+    def __init__(self, configuration):
         self.publish = self.get_publisher()
-        self.name = name
-        self.session_key = session_key
+        self.configuration = configuration
 
     def get_publisher(
             self, view_lookup=located_view, model_lookup=base_model_lookup):
@@ -114,7 +124,7 @@ class Publication(object):
 
     def __call__(self, environ, start_response):
 
-        @sessionned(self.session_key)
+        @sessionned(self.configuration.session_key)
         def publish(environ, start_response):
             layers = self.layers or list()
             with ContextualRequest(environ, layers=layers) as request:
