@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.2 (2015-12-01)
-------------------
+0.2 (2016-08-09)
+----------------
 
   - Using now new attr for edit/delete availability
   - Document actions now use the right menu
