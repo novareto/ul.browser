@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from cromlech.browser import IURL
-from cromlech.events import ObjectCreatedEvent
+from zope.lifecycleevent import ObjectCreatedEvent
 
 from dolmen.forms.base import Action, SuccessMarker
 from dolmen.forms.base.markers import FAILURE

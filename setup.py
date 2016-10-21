@@ -41,6 +41,8 @@ install_requires = [
      "zope.component",
      "zope.event",
      "zope.location",
+     "babel",
+      
     ]
 
 tests_require = [

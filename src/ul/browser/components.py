@@ -33,6 +33,7 @@ from z3c.table.table import Table as BaseTable
 from zope.component import getMultiAdapter, getAdapters
 from zope.event import notify
 from zope.interface import Interface
+from babel.numbers import format_decimal
 
 
 class View(BaseView):
@@ -65,6 +66,11 @@ class View(BaseView):
     def redirect(self, url, code=302):
         exception = REDIRECTIONS[code]
         raise exception(url)
+
+    def namespace(self):
+        ns = super(View, self).namespace()
+        ns.update(h=format_decimal)
+        return ns
 
 
 class Layout(BaseLayout):
