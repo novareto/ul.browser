@@ -5,6 +5,7 @@ import logging
 from cromlech.configuration.utils import load_zcml
 from cromlech.i18n import register_allowed_languages
 from cromlech.browser import setSession
+from cromlech.wsgistate import WsgistateSession
 
 logger = logging.getLogger('ul.browser')
 
@@ -12,10 +13,9 @@ logger = logging.getLogger('ul.browser')
 def sessionned(key):
     def session_wrapped(wrapped):
         def caller(environ, start_response):
-            setSession(environ.get(key))
-            response = wrapped(environ, start_response)
-            setSession()
-            return response
+            with WsgistateSession(environ, key):
+                response = wrapped(environ, start_response)
+                return response
         return caller
     return session_wrapped
 
