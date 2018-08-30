@@ -10,12 +10,28 @@ from cromlech.wsgistate import WsgistateSession
 logger = logging.getLogger('ul.browser')
 
 
-def sessionned(key):
+session_managers = {
+    'wsgistate': WsgistateSession,
+}
+
+
+def sessionned(key, plugin=None):
     def session_wrapped(wrapped):
         def caller(environ, start_response):
-            with WsgistateSession(environ, key):
+            if plugin is None:
+                session = environ.get(key)
+                setSession(session)
                 response = wrapped(environ, start_response)
+                setSession(None)
                 return response
+            else:
+                manager = session_managers.get(plugin)
+                if manager is None:
+                    raise NotImplementedError('Unknown session plugin "%s"' % plugin)
+                else:
+                    with manager(environ, key):
+                        response = wrapped(environ, start_response)
+                        return response
         return caller
     return session_wrapped
 
